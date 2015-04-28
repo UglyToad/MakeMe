@@ -1,64 +1,31 @@
 ﻿namespace UglyToad.MakeMe.Makers
 {
+    using System;
     using System.Collections.Generic;
     using Pocos;
 
     public class NameMaker : IMake<Name>
     {
         private readonly bool includeMiddleName;
+        private readonly StringGenerator stringGenerator;
+        private readonly Random random;
 
-        private int maxLength;
         private CaseStyle casing = CaseStyle.Pascal;
         private bool includeAccentedCharacters;
 
-        private char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
-
-        private char[] consonants =
-        {
-            'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v',
-            'w', 'x', 'y', 'z'
-        };
-
-        private KeyValuePair<char, float>[] frequencies =
-        {
-            new KeyValuePair<char, float>('a', 8.2f),
-            new KeyValuePair<char, float>('b', 1.5f),
-            new KeyValuePair<char, float>('c', 2.8f),
-            new KeyValuePair<char, float>('d', 4.3f),
-            new KeyValuePair<char, float>('e', 12.7f),
-            new KeyValuePair<char, float>('f', 2.2f),
-            new KeyValuePair<char, float>('g', 2.0f),
-            new KeyValuePair<char, float>('h', 6f),
-            new KeyValuePair<char, float>('i', 7f),
-            new KeyValuePair<char, float>('j', 0.2f),
-            new KeyValuePair<char, float>('k', 0.8f),
-            new KeyValuePair<char, float>('l', 4f),
-            new KeyValuePair<char, float>('m', 2.4f),
-            new KeyValuePair<char, float>('n', 6.7f),
-            new KeyValuePair<char, float>('o', 7.5f),
-            new KeyValuePair<char, float>('p', 1.9f),
-            new KeyValuePair<char, float>('q', 0.1f),
-            new KeyValuePair<char, float>('r', 6f),
-            new KeyValuePair<char, float>('s', 6.3f),
-            new KeyValuePair<char, float>('t', 9.1f),
-            new KeyValuePair<char, float>('u', 2.8f),
-            new KeyValuePair<char, float>('v', 1f),
-            new KeyValuePair<char, float>('w', 2.4f),
-            new KeyValuePair<char, float>('x', 0.2f),
-            new KeyValuePair<char, float>('y', 2f),
-            new KeyValuePair<char, float>('z', 0.07f)
-        };
-
-        private string firstName;
-        private string lastName;
-        private string middleName;
+        private int[] firstNameLength = { 3, 8 };
+        private int[] middleNameLength = { 2, 8 };
+        private int[] lastNameLength = { 4, 9 };
 
         public NameMaker(bool includeMiddleName)
         {
+            this.random = new Random();
             this.includeMiddleName = includeMiddleName;
+            this.stringGenerator = new StringGenerator(random);
         }
 
-        public NameMaker() : this(false)
+        public NameMaker()
+            : this(false)
         {
         }
 
@@ -73,25 +40,105 @@
             this.casing = caseStyle;
             return this;
         }
-       
+
         public Name Please()
         {
+            string firstName = stringGenerator.Generate(random.Next(firstNameLength[0], firstNameLength[1]));
+            string lastName = stringGenerator.Generate(random.Next(lastNameLength[0], lastNameLength[1]));
+            string middleName = null;
 
-            throw new System.NotImplementedException();
+            if (includeMiddleName)
+            {
+                middleName = stringGenerator.Generate(random.Next(middleNameLength[0], middleNameLength[1]));
+                return new Name(firstName, middleName, lastName);
+            }
+
+            return GetCorrectlyCasedName(firstName, middleName, lastName);
+        }
+
+        private Name GetCorrectlyCasedName(string firstName, string middleName, string lastName)
+        {
+            char[] firstNameChars;
+            char[] lastNameChars;
+
+            switch (casing)
+            {
+                case CaseStyle.Pascal:
+                    firstNameChars = firstName.ToCharArray();
+                    lastNameChars = lastName.ToCharArray();
+                    firstNameChars[0] = char.ToUpperInvariant(firstNameChars[0]);
+                    lastNameChars[0] = char.ToUpperInvariant(lastNameChars[0]);
+
+                    if (middleName != null)
+                    {
+                        char[] middleNameChars = middleName.ToCharArray();
+                        middleNameChars[0] = char.ToUpperInvariant(middleNameChars[0]);
+
+                        return new Name(new string(firstNameChars), new string(middleNameChars), new string(lastNameChars));
+                    }
+                    return new Name(new string(firstNameChars), new string(lastNameChars));
+                case CaseStyle.Random:
+                    firstNameChars = firstName.ToCharArray();
+                    lastNameChars = lastName.ToCharArray();
+
+                    for (int i = 0; i < firstNameChars.Length; i++)
+                    {
+                        if (random.Next(0, 2) == 0)
+                        {
+                            firstNameChars[i] = char.ToUpperInvariant(firstNameChars[i]);
+                        }
+                    }
+
+                    for (int i = 0; i < lastNameChars.Length; i++)
+                    {
+                        if (random.Next(0, 2) == 0)
+                        {
+                            lastNameChars[i] = char.ToUpperInvariant(lastNameChars[i]);
+                        }
+                    }
+
+                    if (middleName != null)
+                    {
+                        char[] middleNameChars = middleName.ToCharArray();
+                        for (int i = 0; i < middleNameChars.Length; i++)
+                        {
+                            if (random.Next(0, 2) == 0)
+                            {
+                                middleNameChars[i] = char.ToUpperInvariant(middleNameChars[i]);
+                            }
+                        }
+                        return new Name(new string(firstNameChars), new string(middleNameChars), new string(lastNameChars));
+                    }
+                    return new Name(new string(firstNameChars), new string(lastNameChars));
+                case CaseStyle.Upper:
+                    if (middleName != null)
+                    {
+                        return new Name(firstName.ToUpperInvariant(), middleName.ToUpperInvariant(), lastName.ToUpperInvariant());
+                    }
+                    return new Name(firstName.ToUpperInvariant(), lastName.ToUpperInvariant());
+                default:
+                    if (middleName != null)
+                    {
+                        return new Name(firstName, middleName, lastName);
+                    }
+                    return new Name(firstName, lastName);
+            }
         }
 
         public IEnumerable<Name> ThisManyTimes(int times)
         {
-            throw new System.NotImplementedException();
+            for (int i = 0; i < times; i++)
+            {
+                yield return Please();
+            }
         }
     }
 
     public enum CaseStyle
     {
         Pascal = 1,
-        Camel = 2,
-        Lower = 3,
-        Upper = 4,
-        Random = 5
+        Lower = 2,
+        Upper = 3,
+        Random = 4
     }
 }

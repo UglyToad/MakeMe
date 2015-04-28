@@ -1,9 +1,14 @@
 ﻿namespace UglyToad.MakeMe
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class CharacterStatistics
     {
+        public static int SuggestedMaxVowels = 1;
+        public static int SuggestedMaxConsonants = 2;
+
         public static char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
 
         public static char[] Consonants =
@@ -12,9 +17,30 @@
             'w', 'x', 'y', 'z'
         };
 
-        public static char[] CommonlyDoubled = {'s', 'e', 't', 'f', 'l', 'm', 'o', 'r', 'd', 'f', 'p'};
+        private static char[] CommonlyDoubled = {'s', 'e', 't', 'f', 'l', 'm', 'o', 'r', 'd', 'f', 'p'};
 
-        public KeyValuePair<char, float>[] FrequenciesInWord =
+        private static char[] UnlikelyConsonantPartner = { 'v', 'j', 'k', 'q', 'x', 'y', 'z', 'g' };
+
+        private static KeyValuePair<char, char>[] UnlikelyPairings =
+        {
+            new KeyValuePair<char, char>('t', 'c'),
+            new KeyValuePair<char, char>('k', 'p'),
+            new KeyValuePair<char, char>('h', 's'),
+            new KeyValuePair<char, char>('h', 'n'),
+            new KeyValuePair<char, char>('h', 'l'),
+            new KeyValuePair<char, char>('h', 't'),
+            new KeyValuePair<char, char>('f', 's'),
+            new KeyValuePair<char, char>('f', 'h'),
+            new KeyValuePair<char, char>('f', 'w'),
+            new KeyValuePair<char, char>('f', 'd'),
+            new KeyValuePair<char, char>('f', 'w'),
+            new KeyValuePair<char, char>('m', 'd'),
+            new KeyValuePair<char, char>('m', 'v'),
+            new KeyValuePair<char, char>('m', 'r'),
+            new KeyValuePair<char, char>('m', 't')
+        };
+
+        public static KeyValuePair<char, float>[] FrequenciesInWord =
         {
             new KeyValuePair<char, float>('a', 8.2f),
             new KeyValuePair<char, float>('b', 1.5f),
@@ -44,7 +70,7 @@
             new KeyValuePair<char, float>('z', 0.07f)
         };
 
-        public KeyValuePair<char, float>[] FrequenciesAtStart =
+        public static KeyValuePair<char, float>[] FrequenciesAtStart =
         {
             new KeyValuePair<char, float>('a', 11.6f),
             new KeyValuePair<char, float>('b', 4.7f),
@@ -73,5 +99,106 @@
             new KeyValuePair<char, float>('y', 1.6f),
             new KeyValuePair<char, float>('z', 0.03f)
         };
+
+        public static char[] NormalisedCharsForWord()
+        {
+            char[] returnChars = new char[5000];
+            int index = 0;
+
+            foreach (var charPair in FrequenciesInWord.OrderByDescending(kvp => kvp.Value))
+            {
+                for (int i = 0; i < (int)(charPair.Value * 50); i++)
+                {
+                    if (index < returnChars.Length)
+                    {
+                        returnChars[index] = charPair.Key;
+                        index++;
+                    }
+                }
+            }
+
+            return returnChars;
+        }
+
+        public static char[] NormalisedCharsForWordStart()
+        {
+            char[] returnChars = new char[5000];
+            int index = 0;
+
+            foreach (var charPair in FrequenciesAtStart.OrderBy(kvp => kvp.Value))
+            {
+                for (int i = 0; i < (int)(charPair.Value * 50); i++)
+                {
+                    if (index < returnChars.Length)
+                    {
+                        returnChars[index] = charPair.Key;
+                        index++;
+                    }
+                }
+            }
+
+            return returnChars;
+        }
+
+        public static bool IsVowel(char c)
+        {
+            bool isVowel = false;
+
+            for (int i = 0; i < Vowels.Length; i++)
+            {
+                if (c == Vowels[i])
+                {
+                    isVowel = true;
+                    break;
+                }
+            }
+
+            return isVowel;
+        }
+
+        public static bool IsCommonlyDoubled(char c)
+        {
+            bool isCommonlyDoubled = false;
+
+            for (int i = 0; i < CommonlyDoubled.Length; i++)
+            {
+                if (c == CommonlyDoubled[i])
+                {
+                    isCommonlyDoubled = true;
+                    break;
+                }
+            }
+
+            return isCommonlyDoubled;
+        }
+
+        public static bool IsUnlikelyConsonantPairing(char thisChar)
+        {
+            bool isUnlikely = false;
+
+            for (int i = 0; i < UnlikelyConsonantPartner.Length; i++)
+            {
+                if (thisChar == UnlikelyConsonantPartner[i])
+                {
+                    isUnlikely = true;
+                    break;
+                }
+            }
+
+            return isUnlikely;
+        }
+
+        public static bool CanBePaired(char prevChar, char thisChar)
+        {
+            for (int i = 0; i < UnlikelyPairings.Length; i++)
+            {
+                if (prevChar == UnlikelyPairings[i].Key && thisChar == UnlikelyPairings[i].Value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterStatistics.cs" />
+    <Compile Include="StringGenerator.cs" />
     <Compile Include="Makers\IMake.cs" />
     <Compile Include="Makers\DateMaker.cs" />
     <Compile Include="MakeMeA.cs" />
