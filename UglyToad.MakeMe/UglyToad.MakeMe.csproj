@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccentedCharacter.cs" />
     <Compile Include="CharacterStatistics.cs" />
     <Compile Include="StringGenerator.cs" />
     <Compile Include="Makers\IMake.cs" />

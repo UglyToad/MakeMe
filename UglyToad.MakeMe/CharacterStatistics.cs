@@ -17,7 +17,40 @@
             'w', 'x', 'y', 'z'
         };
 
-        private static char[] CommonlyDoubled = {'s', 'e', 't', 'f', 'l', 'm', 'o', 'r', 'd', 'f', 'p'};
+        public static AccentedCharacter[] AccentedCharacters =
+        {
+            new AccentedCharacter('\xE0','a', true),
+            new AccentedCharacter('\xE1','a', true), 
+            new AccentedCharacter('\xE2','a', true),
+            new AccentedCharacter('\xE3','a', true),
+            new AccentedCharacter('\xE4','a', true),
+            new AccentedCharacter('\xE5','a', true),
+            new AccentedCharacter('\xE6','a', true),
+            new AccentedCharacter('\xE7','c', false),
+            new AccentedCharacter('\xE8','e', true),
+            new AccentedCharacter('\xE9','e', true),
+            new AccentedCharacter('\xEA','e', true),
+            new AccentedCharacter('\xEB','e', true),
+            new AccentedCharacter('\xEC','i', true),
+            new AccentedCharacter('\xED','i', true),
+            new AccentedCharacter('\xEE','i', true),
+            new AccentedCharacter('\xEF','i', true),
+            new AccentedCharacter('\xF1','n', false),
+            new AccentedCharacter('\xF2','o', true),
+            new AccentedCharacter('\xF3','o', true),
+            new AccentedCharacter('\xF4','o', true),
+            new AccentedCharacter('\xF5','o', true),
+            new AccentedCharacter('\xF6','o', true),
+            new AccentedCharacter('\xF9','u', true),
+            new AccentedCharacter('\xFA','u', true),
+            new AccentedCharacter('\xFB','u', true),
+            new AccentedCharacter('\xFC','u', true),
+            new AccentedCharacter('\xFD','y', false),
+            new AccentedCharacter('\xFF','y', false),	
+            new AccentedCharacter('\u0153','o', true)	
+        };
+
+        private static char[] CommonlyDoubled = { 's', 'e', 't', 'f', 'l', 'm', 'o', 'r', 'd', 'f', 'p' };
 
         private static char[] UnlikelyConsonantPartner = { 'v', 'j', 'k', 'q', 'x', 'y', 'z', 'g' };
 
@@ -200,5 +233,35 @@
 
             return true;
         }
+
+        internal static bool HasAccentedReplacement(char thisChar)
+        {
+            var hasReplacement = false;
+
+            for (int i = 0; i < AccentedCharacters.Length && !hasReplacement; i++)
+            {
+                hasReplacement = AccentedCharacters[i].NonAccentedEquivalent == thisChar;
+            }
+
+            return hasReplacement;
+        }
+
+        internal static char ReplaceWithAccented(char character, Random random)
+        {
+            var possibleReplacements = new List<AccentedCharacter>();
+
+            for (int i = 0; i < AccentedCharacters.Length; i++)
+            {
+                if (char.ToUpperInvariant(AccentedCharacters[i].NonAccentedEquivalent).Equals(char.ToUpperInvariant(character)))
+                {
+                    possibleReplacements.Add(AccentedCharacters[i]);
+                }
+            }
+
+            int index = random.Next(0, possibleReplacements.Count - 1);
+
+            return possibleReplacements[index].Character;
+        }
     }
 }
+

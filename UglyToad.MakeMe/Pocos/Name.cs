@@ -27,5 +27,10 @@
             }
             return FirstName + " " + LastName;
         }
+
+        public static implicit operator string(Name n)
+        {
+            return n.ToString();
+        }
     }
 }
