@@ -6,18 +6,22 @@
 
     public class CharacterStatistics
     {
-        public static int SuggestedMaxVowels = 1;
-        public static int SuggestedMaxConsonants = 2;
+        public static readonly int SuggestedMaxVowels = 1;
+        public static readonly int SuggestedMaxConsonants = 2;
 
-        public static char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
-
-        public static char[] Consonants =
+        public static readonly char[] UppercaseLetters =
+        {
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        };
+        public static readonly char[] Vowels = { 'a', 'e', 'i', 'o', 'u' };
+        public static readonly char[] Consonants =
         {
             'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v',
             'w', 'x', 'y', 'z'
         };
 
-        public static AccentedCharacter[] AccentedCharacters =
+        public static readonly AccentedCharacter[] AccentedCharacters =
         {
             new AccentedCharacter('\xE0','a', true),
             new AccentedCharacter('\xE1','a', true), 

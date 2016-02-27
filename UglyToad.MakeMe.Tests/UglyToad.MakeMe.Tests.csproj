@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DateMakerTests.cs" />
     <Compile Include="NameMakerTests.cs" />
+    <Compile Include="PostalCodeMakerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

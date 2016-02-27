@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Makers
 {
     using System;
+    using Data;
     using Specification.Name;
 
     public class NameMaker : Maker<Name>

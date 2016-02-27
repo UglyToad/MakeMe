@@ -1,6 +1,6 @@
 ﻿namespace UglyToad.MakeMe.Specification.Name
 {
-    using Name = MakeMe.Name;
+    using Name = Data.Name;
 
     public class NameSpecification : ISpecification<Name>
     {

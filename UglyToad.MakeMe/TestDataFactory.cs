@@ -1,9 +1,12 @@
 ﻿namespace UglyToad.MakeMe
 {
     using System;
+    using Data;
     using Makers;
+    using Makers.PostalCode;
     using Specification.Date;
     using Specification.Name;
+    using Specification.PostalCode;
 
     public class TestDataFactory
     {
@@ -21,9 +24,16 @@
             {
                 return new NameMaker((NameSpecification)config, random);
             }
-            else if (type == typeof(DateTime))
+
+            if (type == typeof(DateTime))
             {
                 return new DateMaker((DateSpecification)config, random);
+            }
+
+            var specification = config as PostalCodeSpecification;
+            if (specification != null)
+            {
+                return new PostalCodeMaker(specification, random);
             }
 
             throw new NotImplementedException($"No maker exists for the return type: {type}");
