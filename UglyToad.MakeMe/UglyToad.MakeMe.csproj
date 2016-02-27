@@ -39,14 +39,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccentedCharacter.cs" />
+    <Compile Include="CaseStyle.cs" />
     <Compile Include="CharacterStatistics.cs" />
+    <Compile Include="ISpecification.cs" />
+    <Compile Include="Name.cs" />
+    <Compile Include="Specification\Date\DateSpecification.cs" />
+    <Compile Include="Specification\DefaultString.cs" />
+    <Compile Include="Specification\Name\NamePartData.cs" />
+    <Compile Include="Specification\Name\NameSpecification.cs" />
+    <Compile Include="Specification\Percentage.cs" />
+    <Compile Include="Specification\WordLengthRange.cs" />
     <Compile Include="StringGenerator.cs" />
-    <Compile Include="Makers\IMake.cs" />
+    <Compile Include="Makers\Maker.cs" />
     <Compile Include="Makers\DateMaker.cs" />
-    <Compile Include="MakeMeA.cs" />
+    <Compile Include="A.cs" />
     <Compile Include="Makers\NameMaker.cs" />
-    <Compile Include="Pocos\Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataFactory.cs" />
+    <Compile Include="TestDataTypeFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

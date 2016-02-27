@@ -1,4 +1,4 @@
-﻿namespace UglyToad.MakeMe.Pocos
+﻿namespace UglyToad.MakeMe
 {
     public struct Name
     {

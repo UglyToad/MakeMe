@@ -1,350 +1,154 @@
 namespace UglyToad.MakeMe.Makers
 {
     using System;
-    using System.Collections.Generic;
+    using Specification.Date;
 
-    public class DateMaker : IMake<DateTime>
+    public class DateMaker : Maker<DateTime>
     {
-        private const int MaxMonth = 12;
-        private const int MaxDay = 31;
-        private const int MaxHour = 23;
-        private const int MaxMinute = 59;
-        private const int MaxSecond = 59;
-        private const int MaxMillisecond = 999;
+        private readonly DateSpecification specification;
 
-        private readonly bool includeTime;
-
-        private Random random;
-
-        private int[] year = { DateTime.MinValue.Year, DateTime.MaxValue.Year };
-        private int[] month = { 1, MaxMonth };
-        private int[] day = { 1, MaxDay };
-        private int[] hour = { 0, MaxHour };
-        private int[] minute = { 0, MaxMinute };
-        private int[] second = { 0, MaxSecond };
-        private int[] millisecond = { 0, MaxMillisecond };
-
-        public DateMaker(bool includeTime)
+        public DateMaker(DateSpecification specification, Random random)
+            : base(specification, random)
         {
-            this.includeTime = includeTime;
-            this.random = new Random();
+            this.specification = specification;
         }
 
-        private void SetUsingDate(DateTime dateTime, bool isFrom)
+        public override DateTime Make()
         {
-            int index = isFrom ? 0 : 1;
+            var thisYear = GenerateYear();
 
-            year[index] = dateTime.Year;
-            month[index] = dateTime.Month;
-            day[index] = dateTime.Day;
+            var thisMonth = GenerateMonth();
 
-            hour[index] = dateTime.Hour;
-            minute[index] = dateTime.Minute;
-            second[index] = dateTime.Second;
-            millisecond[index] = dateTime.Millisecond;
-        }
+            var thisDay = GenerateDay(thisYear, thisMonth);
 
-        public DateMaker FromToday()
-        {
-            FromDate(DateTime.UtcNow);
-            return this;
-        }
-
-        public DateMaker Year(int year)
-        {
-            FromYear(year);
-            ToYear(year);
-            return this;
-        }
-
-        public DateMaker Month(int month)
-        {
-            FromMonth(month);
-            ToMonth(month);
-            return this;
-        }
-
-        public DateMaker Day(int day)
-        {
-            FromDay(day);
-            ToDay(day);
-            return this;
-        }
-
-        public DateMaker Hour(int hour)
-        {
-            FromHour(hour);
-            ToHour(hour);
-            return this;
-        }
-
-        public DateMaker Minute(int minute)
-        {
-            FromMinute(minute);
-            ToMinute(minute);
-            return this;
-        }
-
-        public DateMaker Second(int second)
-        {
-            FromSecond(second);
-            ToSecond(second);
-            return this;
-        }
-
-        public DateMaker Millisecond(int millisecond)
-        {
-            FromMillisecond(millisecond);
-            ToMillisecond(millisecond);
-            return this;
-        }
-
-        public DateMaker GenerateUsingSeed(int seed)
-        {
-            random = new Random(seed);
-            return this;
-        }
-
-        public DateMaker FromDate(DateTime dateTime)
-        {
-            SetUsingDate(dateTime, true);
-            return this;
-        }
-
-        public DateMaker ToDate(DateTime dateTime)
-        {
-            SetUsingDate(dateTime, false);
-            return this;
-        }
-
-        public DateMaker FromYear(int year)
-        {
-            this.year[0] = year;
-            return this;
-        }
-
-        public DateMaker ToYear(int year)
-        {
-            this.year[1] = year;
-            return this;
-        }
-
-        public DateMaker FromMonth(int month)
-        {
-            this.month[0] = month;
-            return this;
-        }
-
-        public DateMaker ToMonth(int month)
-        {
-            this.month[1] = month;
-            return this;
-        }
-
-        public DateMaker FromDay(int day)
-        {
-            this.day[0] = day;
-            return this;
-        }
-
-        public DateMaker ToDay(int day)
-        {
-            this.day[1] = day;
-            return this;
-        }
-
-        public DateMaker FromHour(int hour)
-        {
-            this.hour[0] = hour;
-            return this;
-        }
-
-        public DateMaker ToHour(int hour)
-        {
-            this.hour[1] = hour;
-            return this;
-        }
-
-        public DateMaker FromMinute(int minute)
-        {
-            this.minute[0] = minute;
-            return this;
-        }
-
-        public DateMaker ToMinute(int minute)
-        {
-            this.minute[1] = minute;
-            return this;
-        }
-
-        public DateMaker FromSecond(int second)
-        {
-            this.second[0] = second;
-            return this;
-        }
-
-        public DateMaker ToSecond(int second)
-        {
-            this.second[1] = second;
-            return this;
-        }
-
-        public DateMaker FromMillisecond(int millisecond)
-        {
-            this.millisecond[0] = millisecond;
-            return this;
-        }
-
-        public DateMaker ToMillisecond(int millisecond)
-        {
-            this.millisecond[1] = millisecond;
-            return this;
-        }
-
-        public DateTime Please()
-        {
-            int thisYear = GenerateYear();
-
-            int thisMonth = GenerateMonth();
-
-            int thisDay = GenerateDay(thisYear, thisMonth);
-
-            int thisHour = GenerateHour();
+            var thisHour = GenerateHour();
 
             var thisMinute = GenerateMinute();
 
-            int thisSecond = GenerateSecond();
+            var thisSecond = GenerateSecond();
 
-            int thisMillisecond = GenerateMillisecond();
+            var thisMillisecond = GenerateMillisecond();
 
-            if (includeTime)
+            if (specification.IncludeTime)
             {
-                return new DateTime(thisYear, thisMonth, thisDay, thisHour, thisMinute, thisSecond);
+                return new DateTime(thisYear, thisMonth, thisDay, thisHour, thisMinute, thisSecond, thisMillisecond);
             }
 
             return new DateTime(thisYear, thisMonth, thisDay);
         }
 
-        public IEnumerable<DateTime> ThisManyTimes(int times)
-        {
-            for (int i = 0; i < times; i++)
-            {
-                yield return Please();
-            }
-        }
-        
         private int GenerateYear()
         {
-            if (this.year[0] < DateTime.MinValue.Year)
+            if (specification.Year[0] < DateTime.MinValue.Year)
             {
-                this.year[0] = DateTime.MinValue.Year;
+                specification.Year[0] = DateTime.MinValue.Year;
             }
-            if (this.year[1] > DateTime.MaxValue.Year)
+            if (specification.Year[1] > DateTime.MaxValue.Year)
             {
-                this.year[1] = DateTime.MaxValue.Year;
+                specification.Year[1] = DateTime.MaxValue.Year;
             }
 
-            ProtectLowerBound(this.year);
+            ProtectLowerBound(specification.Year);
 
-            return random.Next(this.year[0], this.year[1]);
+            return Random.Next(specification.Year[0], specification.Year[1]);
         }
 
         private int GenerateMonth()
         {
-            if (this.month[0] < 1)
+            if (specification.Month[0] < 1)
             {
-                this.month[0] = 1;
+                specification.Month[0] = 1;
             }
-            if (this.month[1] > MaxMonth)
+            if (specification.Month[1] > DateSpecification.MaxMonth)
             {
-                this.month[1] = MaxMonth;
+                specification.Month[1] = DateSpecification.MaxMonth;
             }
 
-            ProtectLowerBound(this.month);
+            ProtectLowerBound(specification.Month);
 
-            return random.Next(this.month[0], this.month[1]);
+            return Random.Next(specification.Month[0], specification.Month[1]);
         }
 
         private int GenerateDay(int year, int month)
         {
-            int maxDaysThisMonth = DateTime.DaysInMonth(year, month);
+            var maxDaysThisMonth = DateTime.DaysInMonth(year, month);
 
-            if (this.day[0] < 1)
+            if (specification.Day[0] < 1)
             {
-                this.day[0] = 1;
+                specification.Day[0] = 1;
             }
-            if (this.day[1] > maxDaysThisMonth)
+            if (specification.Day[1] > maxDaysThisMonth)
             {
-                this.day[1] = maxDaysThisMonth;
+                specification.Day[1] = maxDaysThisMonth;
             }
 
-            ProtectLowerBound(this.day);
+            ProtectLowerBound(specification.Day);
 
-            return random.Next(this.day[0], this.day[1]);
+            return Random.Next(specification.Day[0], specification.Day[1]);
         }
 
         private int GenerateHour()
         {
-            if (this.hour[0] < 0)
+            if (specification.Hour[0] < 0)
             {
-                this.hour[0] = 0;
+                specification.Hour[0] = 0;
             }
-            if (this.hour[1] > MaxHour)
+            if (specification.Hour[1] > DateSpecification.MaxHour)
             {
-                this.hour[1] = MaxHour;
+                specification.Hour[1] = DateSpecification.MaxHour;
             }
 
-            ProtectLowerBound(this.hour);
+            ProtectLowerBound(specification.Hour);
 
-            return random.Next(this.hour[0], this.hour[1]);
+            return Random.Next(specification.Hour[0], specification.Hour[1]);
         }
 
         private int GenerateMinute()
         {
-            if (this.minute[0] < 0)
+            if (specification.Minute[0] < 0)
             {
-                this.minute[0] = 0;
+                specification.Minute[0] = 0;
             }
-            if (this.minute[1] > MaxMinute)
+            if (specification.Minute[1] > DateSpecification.MaxMinute)
             {
-                this.minute[1] = MaxMinute;
+                specification.Minute[1] = DateSpecification.MaxMinute;
             }
 
-            ProtectLowerBound(this.minute);
+            ProtectLowerBound(specification.Minute);
 
-            return random.Next(this.minute[0], this.minute[1]);
+            return Random.Next(specification.Minute[0], specification.Minute[1]);
         }
 
         private int GenerateSecond()
         {
-            if (this.second[0] < 0)
+            if (specification.Second[0] < 0)
             {
-                this.second[0] = 0;
+                specification.Second[0] = 0;
             }
-            if (this.second[1] > MaxSecond)
+            if (specification.Second[1] > DateSpecification.MaxSecond)
             {
-                this.second[1] = MaxSecond;
+                specification.Second[1] = DateSpecification.MaxSecond;
             }
 
-            ProtectLowerBound(this.second);
+            ProtectLowerBound(specification.Second);
 
-            return random.Next(this.second[0], this.second[1]);
+            return Random.Next(specification.Second[0], specification.Second[1]);
         }
 
         private int GenerateMillisecond()
         {
-            if (this.millisecond[0] < 0)
+            if (specification.Millisecond[0] < 0)
             {
-                this.millisecond[0] = 0;
+                specification.Millisecond[0] = 0;
             }
-            if (this.millisecond[1] > MaxMillisecond)
+            if (specification.Millisecond[1] > DateSpecification.MaxMillisecond)
             {
-                this.millisecond[1] = MaxMillisecond;
+                specification.Millisecond[1] = DateSpecification.MaxMillisecond;
             }
 
-            ProtectLowerBound(this.millisecond);
+            ProtectLowerBound(specification.Millisecond);
 
-            return random.Next(this.millisecond[0], this.millisecond[1]);
+            return Random.Next(specification.Millisecond[0], specification.Millisecond[1]);
         }
 
         private void ProtectLowerBound(int[] values)
