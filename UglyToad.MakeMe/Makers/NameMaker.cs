@@ -18,13 +18,13 @@
 
         public override Name Make()
         {
-            var firstName = stringGenerator.Generate(Random.Next(specification.FirstNameRange.Minimum, specification.FirstNameRange.Maximum));
-            var lastName = stringGenerator.Generate(Random.Next(specification.LastNameRange.Minimum, specification.LastNameRange.Maximum));
+            var firstName = WordGenerator.Generate(Random.Next(specification.FirstNameRange.Minimum, specification.FirstNameRange.Maximum + 1), specification.CaseStyle, Random);
+            var lastName = WordGenerator.Generate(Random.Next(specification.LastNameRange.Minimum, specification.LastNameRange.Maximum + 1), specification.CaseStyle, Random);
             string middleName = null;
 
             if (specification.NamePartData.MiddleNamePercentage.Met(Random))
             {
-                middleName = stringGenerator.Generate(Random.Next(specification.MiddleNameRange.Minimum, specification.MiddleNameRange.Maximum));
+                middleName = WordGenerator.Generate(Random.Next(specification.MiddleNameRange.Minimum, specification.MiddleNameRange.Maximum + 1), specification.CaseStyle, Random);
 
                 return new Name(firstName, middleName, lastName);
             }
@@ -47,7 +47,7 @@
                 }
             }
 
-            return GetCorrectlyCasedName(firstName, middleName, lastName);
+            return new Name(firstName, middleName, lastName);
         }
 
         private Name GetCorrectlyCasedName(string firstName, string middleName, string lastName)

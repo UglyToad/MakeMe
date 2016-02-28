@@ -81,7 +81,7 @@
                     return $"{outcode} {incode}";
                 case 3:
                     incode +=
-                        CharacterStatistics.UppercaseLetters[Random.Next(CharacterStatistics.UppercaseLetters.Length)];
+                        LetterTypes.UppercaseLetters[Random.Next(LetterTypes.UppercaseLetters.Length)];
 
                     return $"{outcode} {incode}";
                 default:

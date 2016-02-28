@@ -50,5 +50,31 @@
 
             Assert.True(accentedCharactersDetected);
         }
+
+        [Fact]
+        public void RestrictsFirstNameLength()
+        {
+            var names = TestDataFactory.Make(A.Name().WithFirstNameLength(5, 3), 100).GenerateSeries(1000);
+
+            Assert.Equal(Enumerable.Range(3, 3), names.Select(f => f.FirstName.Length).Distinct().OrderBy(v => v));
+        }
+
+        [Fact]
+        public void GeneratesMiddleNames()
+        {
+            var names = TestDataFactory.Make(A.Name().IncludeMiddleNames(true), 100).GenerateSeries(1000);
+
+            Assert.True(names.All(n => !string.IsNullOrWhiteSpace(n.MiddleName)));
+        }
+
+        [Fact]
+        public void GeneratesMiddleNamesWithPercentageChance()
+        {
+            var names = TestDataFactory.Make(A.Name().IncludeMiddleNames(true, 10), 100).GenerateSeries(1000);
+            
+            var middleNames = names.Count(n => !string.IsNullOrWhiteSpace(n.MiddleName));
+
+            Assert.True(middleNames > 0 && middleNames < 200);
+        }
     }
 }
