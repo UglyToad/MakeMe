@@ -8,9 +8,9 @@ namespace UglyToad.MakeMe
 
         public AccentedCharacter(char character, char nonAccentedEquivalent, bool treatAsVowel)
         {
-            this.Character = character;
-            this.NonAccentedEquivalent = nonAccentedEquivalent;
-            this.TreatAsVowel = treatAsVowel;
+            Character = character;
+            NonAccentedEquivalent = nonAccentedEquivalent;
+            TreatAsVowel = treatAsVowel;
         }
     }
 }

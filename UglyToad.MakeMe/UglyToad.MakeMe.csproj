@@ -39,14 +39,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccentedCharacter.cs" />
+    <Compile Include="CaseStyle.cs" />
     <Compile Include="CharacterStatistics.cs" />
+    <Compile Include="Data\IsoAlpha2Code.cs" />
+    <Compile Include="Data\Name.cs" />
+    <Compile Include="Data\PostalCode.cs" />
+    <Compile Include="ISpecification.cs" />
+    <Compile Include="Makers\IntegerMaker.cs" />
+    <Compile Include="Makers\PostalCode\DigitPostcodeMaker.cs" />
+    <Compile Include="Makers\PostalCode\PostalCodeMaker.cs" />
+    <Compile Include="Makers\PostalCode\UkCodeFormat.cs" />
+    <Compile Include="Makers\PostalCode\UnitedKingdomPostcodeMaker.cs" />
+    <Compile Include="MarsagliaPolar.cs" />
+    <Compile Include="Percentage.cs" />
+    <Compile Include="Punctuation.cs" />
+    <Compile Include="Specification\Date\DateSpecification.cs" />
+    <Compile Include="Specification\DefaultString.cs" />
+    <Compile Include="Specification\Integer\IntegerSpecification.cs" />
+    <Compile Include="Specification\Name\NamePartData.cs" />
+    <Compile Include="Specification\Name\NameSpecification.cs" />
+    <Compile Include="Specification\PostalCode\PostalCodeSpecification.cs" />
+    <Compile Include="Specification\WordLengthRange.cs" />
     <Compile Include="StringGenerator.cs" />
-    <Compile Include="Makers\IMake.cs" />
+    <Compile Include="Makers\Maker.cs" />
     <Compile Include="Makers\DateMaker.cs" />
-    <Compile Include="MakeMeA.cs" />
+    <Compile Include="A.cs" />
     <Compile Include="Makers\NameMaker.cs" />
-    <Compile Include="Pocos\Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataFactory.cs" />
+    <Compile Include="TestDataTypeFactory.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
