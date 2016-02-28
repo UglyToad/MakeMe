@@ -1,6 +1,6 @@
 ﻿namespace UglyToad.MakeMe.Specification
 {
-    public class WordLengthRange
+    internal class WordLengthRange
     {
         public int Minimum { get; private set; }
 

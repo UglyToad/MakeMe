@@ -3,7 +3,7 @@ namespace UglyToad.MakeMe.Makers
     using System;
     using Specification.Date;
 
-    public class DateMaker : Maker<DateTime>
+    internal class DateMaker : Maker<DateTime>
     {
         private readonly DateSpecification specification;
 

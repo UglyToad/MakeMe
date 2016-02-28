@@ -5,7 +5,7 @@
     using Data;
     using Specification.PostalCode;
 
-    public class PostalCodeMaker : Maker<string>
+    internal class PostalCodeMaker : Maker<string>
     {
         private readonly PostalCodeSpecification specification;
         private static readonly Dictionary<IsoAlpha2Code, Func<PostalCodeSpecification, Random, string>> Makers 

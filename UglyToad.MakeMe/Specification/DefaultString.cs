@@ -1,6 +1,6 @@
 ﻿namespace UglyToad.MakeMe.Specification
 {
-    public class DefaultString
+    internal class DefaultString
     {
         public string Value { get; private set; }
 

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Punctuation
+    internal class Punctuation
     {
         public static readonly char[] Characters =
         {

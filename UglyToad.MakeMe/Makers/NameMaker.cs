@@ -4,7 +4,7 @@
     using Data;
     using Specification.Name;
 
-    public class NameMaker : Maker<Name>
+    internal class NameMaker : Maker<Name>
     {
         private readonly NameSpecification specification;
         private readonly StringGenerator stringGenerator;

@@ -3,7 +3,7 @@
     using System;
     using Specification.Integer;
 
-    public class IntegerMaker : Maker<int>
+    internal class IntegerMaker : Maker<int>
     {
         private readonly IntegerSpecification specification;
         private readonly MarsagliaPolar marsaglia;
@@ -12,7 +12,7 @@
             : base(specification, random)
         {
             this.specification = specification;
-            this.marsaglia = new MarsagliaPolar(specification.Minimum, specification.Maximum, Random);
+            marsaglia = new MarsagliaPolar(specification.Minimum, specification.Maximum, Random);
         }
 
         public override int Make()

@@ -45,7 +45,6 @@
     <Compile Include="CharacterStatistics.cs" />
     <Compile Include="Data\IsoAlpha2Code.cs" />
     <Compile Include="Data\Name.cs" />
-    <Compile Include="Data\PostalCode.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="Makers\IntegerMaker.cs" />
     <Compile Include="Makers\PostalCode\DigitPostcodeMaker.cs" />

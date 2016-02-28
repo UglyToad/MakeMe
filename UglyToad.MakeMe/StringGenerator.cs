@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class StringGenerator
+    internal class StringGenerator
     {
         private readonly Random random;
         private readonly char[] normalisedChars = CharacterStatistics.NormalisedCharsForWord();

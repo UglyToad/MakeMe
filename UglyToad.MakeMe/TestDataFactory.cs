@@ -8,8 +8,18 @@
     using Specification.Name;
     using Specification.PostalCode;
 
+    /// <summary>
+    /// Factory for creating all types of test data.
+    /// </summary>
     public class TestDataFactory
     {
+        /// <summary>
+        /// Takes in a specification of the type of data to generate and returns a factory for that data type.
+        /// </summary>
+        /// <typeparam name="TGenerated">The type of data to generate.</typeparam>
+        /// <param name="config">The specification for the type of data to generate with any options.</param>
+        /// <param name="seed">An optional seed for the random generator used internally. Set to a constant value for repeatable results.</param>
+        /// <returns>A factory which will generate data of the configured type with the correct options.</returns>
         public static TestDataTypeFactory<TGenerated> Make<TGenerated>(ISpecification<TGenerated> config, int? seed = null)
         {
             var random = seed.HasValue ? new Random(seed.Value) : new Random();

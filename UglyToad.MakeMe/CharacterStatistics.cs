@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class CharacterStatistics
+    internal class CharacterStatistics
     {
         public static readonly int SuggestedMaxVowels = 1;
         public static readonly int SuggestedMaxConsonants = 2;

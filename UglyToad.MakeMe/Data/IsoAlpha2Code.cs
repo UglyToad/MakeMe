@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    public struct IsoAlpha2Code
+    internal struct IsoAlpha2Code
     {
         public bool Equals(IsoAlpha2Code other)
         {

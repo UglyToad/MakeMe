@@ -2,24 +2,27 @@
 {
     using System;
 
+    /// <summary>
+    /// Specification for generating <see cref="DateTime"/>.
+    /// </summary>
     public class DateSpecification : ISpecification<DateTime>
     {
-        public const int MaxMonth = 12;
-        public const int MaxDay = 31;
-        public const int MaxHour = 23;
-        public const int MaxMinute = 59;
-        public const int MaxSecond = 59;
-        public const int MaxMillisecond = 999;
+        internal const int MaxMonth = 12;
+        internal const int MaxDay = 31;
+        internal const int MaxHour = 23;
+        internal const int MaxMinute = 59;
+        internal const int MaxSecond = 59;
+        internal const int MaxMillisecond = 999;
 
-        public bool IncludeTime { get; set; } = true;
+        internal bool IncludeTime { get; set; } = true;
 
-        public int[] Year { get; } = {DateTime.MinValue.Year, DateTime.MaxValue.Year};
-        public int[] Month { get; } = {1, MaxMonth};
-        public int[] Day { get; } = {1, MaxDay};
-        public int[] Hour { get; } = {0, MaxHour};
-        public int[] Minute { get; } = {0, MaxMinute};
-        public int[] Second { get; } = {0, MaxSecond};
-        public int[] Millisecond { get; } = {0, MaxMillisecond};
+        internal int[] Year { get; } = {DateTime.MinValue.Year, DateTime.MaxValue.Year};
+        internal int[] Month { get; } = {1, MaxMonth};
+        internal int[] Day { get; } = {1, MaxDay};
+        internal int[] Hour { get; } = {0, MaxHour};
+        internal int[] Minute { get; } = {0, MaxMinute};
+        internal int[] Second { get; } = {0, MaxSecond};
+        internal int[] Millisecond { get; } = {0, MaxMillisecond};
 
         private void SetUsingDate(DateTime dateTime, bool isFrom)
         {
@@ -35,18 +38,34 @@
             Millisecond[index] = dateTime.Millisecond;
         }
 
+        /// <summary>
+        /// Specifies whether to include time in the result <see cref="DateTime"/>.
+        /// Default true.
+        /// If set false results will have 00:00:00 for time part.
+        /// </summary>
+        /// <param name="include">True to include time part.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification IncludeTimePart(bool include)
         {
             IncludeTime = include;
             return this;
         }
 
+        /// <summary>
+        /// Generated dates will be after or on the current date and time (UTC).
+        /// </summary>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromToday()
         {
             FromDate(DateTime.UtcNow);
             return this;
         }
 
+        /// <summary>
+        /// All generated dates will be in the specified year.
+        /// </summary>
+        /// <param name="year">The year to use.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification InYear(int year)
         {
             FromYear(year);
@@ -54,6 +73,11 @@
             return this;
         }
 
+        /// <summary>
+        /// All generated dates will be in the specified month (but year can vary unless set elsewhere).
+        /// </summary>
+        /// <param name="month">The month to use.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification InMonth(int month)
         {
             FromMonth(month);
@@ -61,6 +85,11 @@
             return this;
         }
 
+        /// <summary>
+        /// All generated dates will be in the specified day (but year and month can vary unless previously set).
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
         public DateSpecification InDay(int day)
         {
             FromDay(day);
@@ -96,12 +125,22 @@
             return this;
         }
 
+        /// <summary>
+        /// Generate data after or on this date.
+        /// </summary>
+        /// <param name="dateTime">The lower bound of date.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromDate(DateTime dateTime)
         {
             SetUsingDate(dateTime, true);
             return this;
         }
 
+        /// <summary>
+        /// Generate date before or on this date.
+        /// </summary>
+        /// <param name="dateTime">The upper bound of date.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToDate(DateTime dateTime)
         {
             SetUsingDate(dateTime, false);

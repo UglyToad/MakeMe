@@ -1,6 +1,6 @@
 namespace UglyToad.MakeMe
 {
-    public struct AccentedCharacter
+    internal struct AccentedCharacter
     {
         public readonly char Character;
         public readonly char NonAccentedEquivalent;
