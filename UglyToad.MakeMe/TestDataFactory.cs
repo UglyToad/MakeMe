@@ -7,6 +7,7 @@
     using Specification.Integer;
     using Specification.Name;
     using Specification.PostalCode;
+    using Specification.Text;
 
     /// <summary>
     /// Factory for creating all types of test data.
@@ -48,6 +49,11 @@
             if (type == typeof(IntegerSpecification))
             {
                 return new IntegerMaker((IntegerSpecification)config, random);
+            }
+
+            if (type == typeof(TextSpecification))
+            {
+                return new TextMaker((TextSpecification) config, random);
             }
 
             throw new NotImplementedException($"No maker exists for the return type: {type}");

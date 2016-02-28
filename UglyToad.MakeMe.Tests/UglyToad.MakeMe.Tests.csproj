@@ -66,6 +66,7 @@
     <Compile Include="NameMakerTests.cs" />
     <Compile Include="PostalCodeMakerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextMakerTests.cs" />
     <Compile Include="WordGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>

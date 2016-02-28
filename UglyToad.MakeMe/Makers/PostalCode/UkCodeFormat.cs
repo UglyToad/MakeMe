@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Internal;
 
     internal struct UkCodeFormat
     {

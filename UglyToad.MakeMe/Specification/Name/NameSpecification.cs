@@ -1,5 +1,6 @@
 ﻿namespace UglyToad.MakeMe.Specification.Name
 {
+    using Internal;
     using Name = Data.Name;
 
     /// <summary>
@@ -11,14 +12,14 @@
         private const int DefaultNameMinimumLength = 2;
         private const int DefaultNameMaximumLength = 7;
 
-        internal static readonly WordLengthRange DefaultLengthRange =
-            new WordLengthRange(DefaultNameMinimumLength, DefaultNameMaximumLength);
+        internal static readonly TextLengthRange DefaultLengthRange =
+            new TextLengthRange(DefaultNameMinimumLength, DefaultNameMaximumLength);
 
-        internal WordLengthRange FirstNameRange { get; } = DefaultLengthRange;
+        internal TextLengthRange FirstNameRange { get; } = DefaultLengthRange;
 
-        internal WordLengthRange LastNameRange { get; } = DefaultLengthRange;
+        internal TextLengthRange LastNameRange { get; } = DefaultLengthRange;
 
-        internal WordLengthRange MiddleNameRange { get; } = DefaultLengthRange;
+        internal TextLengthRange MiddleNameRange { get; } = DefaultLengthRange;
 
         internal NamePartData NamePartData { get; } = new NamePartData();
 

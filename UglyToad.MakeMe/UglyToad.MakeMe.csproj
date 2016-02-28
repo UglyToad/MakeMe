@@ -40,30 +40,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccentedCharacter.cs" />
+    <Compile Include="Internal\AccentedCharacter.cs" />
     <Compile Include="CaseStyle.cs" />
-    <Compile Include="CharacterStatistics.cs" />
+    <Compile Include="Internal\CharacterStatistics.cs" />
     <Compile Include="Data\IsoAlpha2Code.cs" />
     <Compile Include="Data\Name.cs" />
+    <Compile Include="Internal\SentenceGenerator.cs" />
     <Compile Include="ISpecification.cs" />
-    <Compile Include="LetterFrequency.cs" />
-    <Compile Include="LetterTypes.cs" />
+    <Compile Include="Internal\LetterFrequency.cs" />
+    <Compile Include="Internal\LetterTypes.cs" />
     <Compile Include="Makers\IntegerMaker.cs" />
     <Compile Include="Makers\PostalCode\DigitPostcodeMaker.cs" />
     <Compile Include="Makers\PostalCode\PostalCodeMaker.cs" />
     <Compile Include="Makers\PostalCode\UkCodeFormat.cs" />
     <Compile Include="Makers\PostalCode\UnitedKingdomPostcodeMaker.cs" />
-    <Compile Include="MarsagliaPolar.cs" />
-    <Compile Include="Percentage.cs" />
-    <Compile Include="Punctuation.cs" />
+    <Compile Include="Makers\TextMaker.cs" />
+    <Compile Include="Internal\MarsagliaPolar.cs" />
+    <Compile Include="Internal\Percentage.cs" />
+    <Compile Include="Internal\Punctuation.cs" />
     <Compile Include="Specification\Date\DateSpecification.cs" />
     <Compile Include="Specification\DefaultString.cs" />
     <Compile Include="Specification\Integer\IntegerSpecification.cs" />
     <Compile Include="Specification\Name\NamePartData.cs" />
     <Compile Include="Specification\Name\NameSpecification.cs" />
     <Compile Include="Specification\PostalCode\PostalCodeSpecification.cs" />
-    <Compile Include="Specification\WordLengthRange.cs" />
-    <Compile Include="StringGenerator.cs" />
+    <Compile Include="Specification\Text\TextSpecification.cs" />
+    <Compile Include="Specification\TextLengthRange.cs" />
+    <Compile Include="Internal\StringGenerator.cs" />
     <Compile Include="Makers\Maker.cs" />
     <Compile Include="Makers\DateMaker.cs" />
     <Compile Include="A.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataFactory.cs" />
     <Compile Include="TestDataTypeFactory.cs" />
-    <Compile Include="WordGenerator.cs" />
+    <Compile Include="Internal\WordGenerator.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

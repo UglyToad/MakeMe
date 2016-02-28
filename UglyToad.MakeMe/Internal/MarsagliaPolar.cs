@@ -1,4 +1,4 @@
-﻿namespace UglyToad.MakeMe
+﻿namespace UglyToad.MakeMe.Internal
 {
     using System;
 
@@ -22,7 +22,7 @@
         /// Uses the Marsaglia polar method for generating random normal distributed integers.
         /// </summary>
         /// <returns>An integer in the range defined in the specification.</returns>
-        public int GeneratNextInNormalDistribution()
+        public int GenerateNextInNormalDistribution()
         {
             if (isSpareReady)
             {

@@ -5,6 +5,7 @@
     using Specification.Integer;
     using Specification.Name;
     using Specification.PostalCode;
+    using Specification.Text;
 
     /// <summary>
     /// The parent class for generating all specifications.
@@ -45,6 +46,15 @@
         public static IntegerSpecification Integer()
         {
             return new IntegerSpecification();
+        }
+
+        /// <summary>
+        /// Create a specification for text as <see cref="string"/>.
+        /// </summary>
+        /// <returns>A default <see cref="TextSpecification"/>.</returns>
+        public static TextSpecification Text()
+        {
+            return new TextSpecification();
         }
     }
 }
