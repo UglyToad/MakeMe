@@ -60,6 +60,7 @@
         }
 
         public static readonly IsoAlpha2Code UnitedKingdom = new IsoAlpha2Code("GB");
+        public static readonly IsoAlpha2Code India = new IsoAlpha2Code("IN");
         public static readonly IsoAlpha2Code Unknown = new IsoAlpha2Code("ZZ");
     }
 }

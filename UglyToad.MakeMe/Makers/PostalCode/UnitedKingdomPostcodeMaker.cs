@@ -20,17 +20,17 @@
             if (specification.InvalidPercentage.Met(Random))
             {
                 var incode = code.InCode;
-                var outcode = code.Outcode;
+                var outcode = code.OutCode;
 
                 return RandomiseError(outcode, incode);
             }
 
             if (!specification.UseProperSpacing)
             {
-                return RandomiseSpacing(code.Outcode, code.InCode);
+                return RandomiseSpacing(code.OutCode, code.InCode);
             }
             
-            return $"{code.Outcode} {code.InCode}";
+            return $"{code.OutCode} {code.InCode}";
         }
 
         private UkCodeFormat GenerateValidCode()

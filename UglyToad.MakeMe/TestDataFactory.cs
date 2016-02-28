@@ -1,10 +1,10 @@
 ﻿namespace UglyToad.MakeMe
 {
     using System;
-    using Data;
     using Makers;
     using Makers.PostalCode;
     using Specification.Date;
+    using Specification.Integer;
     using Specification.Name;
     using Specification.PostalCode;
 
@@ -18,22 +18,26 @@
 
         private static object CreateMaker<TGenerated>(ISpecification<TGenerated> config, Random random)
         {
-            var type = typeof (TGenerated);
+            var type = config.GetType();
 
-            if (type == typeof(Name))
+            if (type == typeof(NameSpecification))
             {
                 return new NameMaker((NameSpecification)config, random);
             }
 
-            if (type == typeof(DateTime))
+            if (type == typeof(DateSpecification))
             {
                 return new DateMaker((DateSpecification)config, random);
             }
-
-            var specification = config as PostalCodeSpecification;
-            if (specification != null)
+            
+            if (type == typeof(PostalCodeSpecification))
             {
-                return new PostalCodeMaker(specification, random);
+                return new PostalCodeMaker((PostalCodeSpecification)config, random);
+            }
+            
+            if (type == typeof(IntegerSpecification))
+            {
+                return new IntegerMaker((IntegerSpecification)config, random);
             }
 
             throw new NotImplementedException($"No maker exists for the return type: {type}");

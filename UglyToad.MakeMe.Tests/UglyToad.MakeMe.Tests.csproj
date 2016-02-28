@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DateMakerTests.cs" />
+    <Compile Include="IntegerMakerTests.cs" />
     <Compile Include="NameMakerTests.cs" />
     <Compile Include="PostalCodeMakerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

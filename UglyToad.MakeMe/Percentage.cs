@@ -1,4 +1,4 @@
-namespace UglyToad.MakeMe.Specification
+namespace UglyToad.MakeMe
 {
     using System;
 

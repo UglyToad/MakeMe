@@ -4,19 +4,21 @@
     using System.Linq;
     using Specification.PostalCode;
 
-    internal class FiveDigitPostcodeMaker : Maker<string>
+    internal class DigitPostcodeMaker : Maker<string>
     {
         private readonly PostalCodeSpecification specification;
+        private readonly int length;
 
-        public FiveDigitPostcodeMaker(PostalCodeSpecification specification, Random random) 
+        public DigitPostcodeMaker(PostalCodeSpecification specification, Random random, int length) 
             : base(specification, random)
         {
             this.specification = specification;
+            this.length = length;
         }
 
         public override string Make()
         {
-            var code = new string(Enumerable.Range(0, 5).Select(_ => Random.Next(10).ToString()[0]).ToArray());
+            var code = new string(Enumerable.Range(0, length).Select(_ => Random.Next(10).ToString()[0]).ToArray());
 
             if (!specification.UseProperSpacing)
             {

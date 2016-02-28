@@ -11,7 +11,8 @@
         private static readonly Dictionary<IsoAlpha2Code, Func<PostalCodeSpecification, Random, string>> Makers 
             = new Dictionary<IsoAlpha2Code, Func<PostalCodeSpecification, Random, string>>
         {
-                { IsoAlpha2Code.UnitedKingdom, (s, r) => new UnitedKingdomPostcodeMaker(s, r).Make() }
+                { IsoAlpha2Code.UnitedKingdom, (s, r) => new UnitedKingdomPostcodeMaker(s, r).Make() },
+                { IsoAlpha2Code.India, (s, r) => new DigitPostcodeMaker(s, r, 6).Make() }
         }; 
 
         public PostalCodeMaker(PostalCodeSpecification specification, Random random) 
@@ -30,7 +31,7 @@
                 return makerFunc(specification, Random);
             }
 
-            return new FiveDigitPostcodeMaker(specification, Random).Make();
+            return new DigitPostcodeMaker(specification, Random, 5).Make();
         }
     }
 }

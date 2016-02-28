@@ -25,17 +25,17 @@
 
         public string InCode { get; private set; }
 
-        public string Outcode { get; private set; }
+        public string OutCode { get; private set; }
 
-        public UkCodeFormat(string outcode, string inCode)
+        public UkCodeFormat(string outCode, string inCode)
         {
-            Outcode = outcode;
+            OutCode = outCode;
             InCode = inCode;
         }
 
         public UkCodeFormat GenerateRandom(Random random, CaseStyle caseStyle)
         {
-            var outcode = Outcode.Select(o =>
+            var outcode = OutCode.Select(o =>
                 SubstituteTemplatedCharacterWithMatchingCase(o, random, CharacterStatistics.UppercaseLetters,
                     caseStyle))
                 .ToArray();

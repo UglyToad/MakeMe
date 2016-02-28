@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe
 {
     using Specification.Date;
+    using Specification.Integer;
     using Specification.Name;
     using Specification.PostalCode;
 
@@ -19,6 +20,11 @@
         public static PostalCodeSpecification PostalCode()
         {
             return new PostalCodeSpecification();
+        }
+
+        public static IntegerSpecification Integer()
+        {
+            return new IntegerSpecification();
         }
     }
 }

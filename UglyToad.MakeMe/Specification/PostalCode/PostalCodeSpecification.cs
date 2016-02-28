@@ -15,6 +15,12 @@
             return this;
         }
 
+        public PostalCodeSpecification FromIndia()
+        {
+            Country = IsoAlpha2Code.India;
+            return this;
+        }
+
         public PostalCodeSpecification WithFiveDigitFormat()
         {
             Country = IsoAlpha2Code.Unknown;
