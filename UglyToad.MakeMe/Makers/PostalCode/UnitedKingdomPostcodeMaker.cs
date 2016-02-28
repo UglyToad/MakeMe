@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Makers.PostalCode
 {
     using System;
+    using Internal;
     using Specification.PostalCode;
 
     internal class UnitedKingdomPostcodeMaker : Maker<string>

@@ -1,4 +1,4 @@
-﻿namespace UglyToad.MakeMe
+﻿namespace UglyToad.MakeMe.Internal
 {
     using System;
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Internal;
     using Xunit;
 
     public class WordGeneratorTests
@@ -51,6 +52,17 @@
             var result = WordGenerator.Generate(length, CaseStyle.Pascal, random);
 
             Assert.Equal(length, result.Length);
+        }
+
+        [Fact]
+        public void OneLetterWordsOnlyVowels()
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                var result = WordGenerator.Generate(1, CaseStyle.Lower, new Random(i));
+
+                Assert.True(LetterTypes.IsVowel(result[0]));
+            }
         }
     }
 }

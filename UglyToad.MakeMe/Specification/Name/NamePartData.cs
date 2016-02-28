@@ -1,5 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Specification.Name
 {
+    using Internal;
+
     internal class NamePartData
     {
         public Percentage FirstNamePercentage { get; set; } = Percentage.Maximum;

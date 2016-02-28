@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Internal;
     using Specification.PostalCode;
 
     internal class DigitPostcodeMaker : Maker<string>

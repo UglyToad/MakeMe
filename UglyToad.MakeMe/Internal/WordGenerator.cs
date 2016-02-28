@@ -1,4 +1,4 @@
-﻿namespace UglyToad.MakeMe
+﻿namespace UglyToad.MakeMe.Internal
 {
     using System;
 
@@ -6,7 +6,12 @@
     {
         public static string Generate(int length, CaseStyle caseStyle, Random random)
         {
-            var runCharacterTransformPerIteration = caseStyle == CaseStyle.Upper 
+            if (length == 1)
+            {
+                return GenerateSingleCharacter(random, caseStyle).ToString();
+            }
+
+            var runCharacterTransformPerIteration = caseStyle == CaseStyle.Upper
                 || caseStyle == CaseStyle.Random;
             var transform = CorrectCase(caseStyle, random);
             var chars = new char[length];
@@ -46,6 +51,21 @@
             return new string(chars);
         }
 
+        private static char GenerateSingleCharacter(Random random, CaseStyle caseStyle)
+        {
+            var c = LetterFrequency.Vowels[random.Next(LetterFrequency.Vowels.Length)];
+            switch (caseStyle)
+            {
+                case CaseStyle.Pascal:
+                case CaseStyle.Upper:
+                    return char.ToUpperInvariant(c);
+                case CaseStyle.Random:
+                    return (random.Next(2) > 0) ? char.ToUpperInvariant(c) : c;
+                default:
+                    return c;
+            }
+        }
+
         private static char GetCharacter(Random random, int index, char previous, int consecutiveVowels, int consecutiveConsonants)
         {
             if (index == 0)
@@ -55,18 +75,18 @@
 
             var allowExtra = random.Next(10) == 9;
 
-            if (consecutiveVowels > LetterFrequency.TypicalMaxVowels 
+            if (consecutiveVowels > LetterFrequency.TypicalMaxVowels
                 || (consecutiveVowels == LetterFrequency.TypicalMaxVowels && !allowExtra))
             {
                 return LetterFrequency.Consonants[random.Next(LetterFrequency.Consonants.Length)];
             }
 
-            if (consecutiveConsonants > LetterFrequency.TypicalMaxConsonants 
+            if (consecutiveConsonants > LetterFrequency.TypicalMaxConsonants
                 || (consecutiveConsonants == LetterFrequency.TypicalMaxConsonants && !allowExtra))
             {
                 return LetterFrequency.Vowels[random.Next(LetterFrequency.Vowels.Length)];
             }
-            
+
             var c = GetRandomWordLetter(random);
 
             if (c == previous && !CharacterStatistics.IsCommonlyDoubled(c) && !allowExtra)

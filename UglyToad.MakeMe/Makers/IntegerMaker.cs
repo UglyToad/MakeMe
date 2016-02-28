@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Makers
 {
     using System;
+    using Internal;
     using Specification.Integer;
 
     internal class IntegerMaker : Maker<int>
@@ -25,7 +26,7 @@
             int result;
             do
             {
-                result = marsaglia.GeneratNextInNormalDistribution();
+                result = marsaglia.GenerateNextInNormalDistribution();
             } while (result < specification.Minimum || result > specification.Maximum);
 
             return result;

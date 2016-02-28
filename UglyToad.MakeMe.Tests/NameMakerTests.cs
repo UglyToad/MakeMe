@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Tests
 {
     using System.Linq;
+    using Internal;
     using Xunit;
 
     public class NameMakerTests

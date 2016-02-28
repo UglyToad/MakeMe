@@ -1,6 +1,7 @@
 ﻿namespace UglyToad.MakeMe.Specification.PostalCode
 {
     using Data;
+    using Internal;
 
     /// <summary>
     /// Specification for generating postal codes. Defaults to a 5 digit postal code.

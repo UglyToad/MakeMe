@@ -1,12 +1,12 @@
 ﻿namespace UglyToad.MakeMe.Specification
 {
-    internal class WordLengthRange
+    internal class TextLengthRange
     {
         public int Minimum { get; private set; }
 
         public int Maximum { get; private set; }
 
-        public WordLengthRange(int minimum, int maximum)
+        public TextLengthRange(int minimum, int maximum)
         {
             if (minimum < 0)
             {
@@ -56,6 +56,11 @@
 
             Minimum = min;
             Maximum = max;
+        }
+
+        public int Size()
+        {
+            return this.Maximum - this.Minimum;
         }
     }
 }
