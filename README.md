@@ -1,5 +1,13 @@
 # UglyToad.MakeMe #
 
+**Project**
+
+[![Build status](https://ci.appveyor.com/api/projects/status/3wyup59qbri2jh4f?svg=true)](https://ci.appveyor.com/project/EliotJones/makeme)
+
+**Master**
+
+[![Build status](https://ci.appveyor.com/api/projects/status/3wyup59qbri2jh4f/branch/master?svg=true)](https://ci.appveyor.com/project/EliotJones/makeme/branch/master)
+
 A test data generator for creating meaningful randomised data. Intended to be used for filling databases with data, providing data for automation tests and for integration tests.
 
 Currently generates the following:
@@ -7,9 +15,9 @@ Currently generates the following:
 + Dates - with or without time component.
 + Names - names which are are sometimes sort-of pronounceable, not just random combinations of letters.
 + Postal Codes - valid format UK postcodes, generic 5 digit postcodes for other countries and 6 digit postcodes for India.
-+ Numbers - Supports generation of pseudo-random Normal Distribution integers.
++ Numbers - supports generation of pseudo-random Normal Distribution integers.
 
-Plans to support the following:
+There are plans to support the following:
 
 + Emails
 + Addresses
