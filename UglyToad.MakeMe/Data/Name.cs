@@ -109,20 +109,37 @@
         public override string ToString()
         {
             var result = string.Empty;
+            var hasContent = false;
 
-            if (!string.IsNullOrEmpty(result))
+            if (!string.IsNullOrEmpty(FirstName))
             {
                 result += FirstName;
+                hasContent = true;
             }
 
             if (!string.IsNullOrEmpty(MiddleName))
             {
-                result += " " + MiddleName;
+                if (hasContent)
+                {
+                    result += " " + MiddleName;
+                }
+                else
+                {
+                    result += MiddleName;
+                    hasContent = true;
+                }
             }
 
             if (!string.IsNullOrEmpty(LastName))
             {
-                result += " " + LastName;
+                if (hasContent)
+                {
+                    result += " " + LastName;
+                }
+                else
+                {
+                    result += LastName;
+                }
             }
 
             return result;

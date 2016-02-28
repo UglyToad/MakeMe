@@ -54,7 +54,7 @@
                     return code + Random.Next(10);
                 default:
                     return code.Insert(errorLocation,
-                        CharacterStatistics.UppercaseLetters[Random.Next(CharacterStatistics.UppercaseLetters.Length)]
+                        LetterTypes.UppercaseLetters[Random.Next(LetterTypes.UppercaseLetters.Length)]
                         .ToString());
             }
         }

@@ -36,7 +36,7 @@
         public UkCodeFormat GenerateRandom(Random random, CaseStyle caseStyle)
         {
             var outcode = OutCode.Select(o =>
-                SubstituteTemplatedCharacterWithMatchingCase(o, random, CharacterStatistics.UppercaseLetters,
+                SubstituteTemplatedCharacterWithMatchingCase(o, random, LetterTypes.UppercaseLetters,
                     caseStyle))
                 .ToArray();
 
