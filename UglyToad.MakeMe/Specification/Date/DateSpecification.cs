@@ -97,34 +97,6 @@
             return this;
         }
 
-        public DateSpecification InHour(int hour)
-        {
-            FromHour(hour);
-            ToHour(hour);
-            return this;
-        }
-
-        public DateSpecification InMinute(int minute)
-        {
-            FromMinute(minute);
-            ToMinute(minute);
-            return this;
-        }
-
-        public DateSpecification InSecond(int second)
-        {
-            FromSecond(second);
-            ToSecond(second);
-            return this;
-        }
-
-        public DateSpecification InMillisecond(int millisecond)
-        {
-            FromMillisecond(millisecond);
-            ToMillisecond(millisecond);
-            return this;
-        }
-
         /// <summary>
         /// Generate data after or on this date.
         /// </summary>
@@ -147,84 +119,154 @@
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the year.
+        /// </summary>
+        /// <param name="year">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromYear(int year)
         {
             Year[0] = year;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the year.
+        /// </summary>
+        /// <param name="year">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToYear(int year)
         {
             Year[1] = year;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the month.
+        /// </summary>
+        /// <param name="month">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromMonth(int month)
         {
             Month[0] = month;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the month.
+        /// </summary>
+        /// <param name="month">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToMonth(int month)
         {
             Month[1] = month;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the day.
+        /// </summary>
+        /// <param name="day">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromDay(int day)
         {
             Day[0] = day;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the day.
+        /// </summary>
+        /// <param name="day">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToDay(int day)
         {
             Day[1] = day;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the hour.
+        /// </summary>
+        /// <param name="hour">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromHour(int hour)
         {
             Hour[0] = hour;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the hour.
+        /// </summary>
+        /// <param name="hour">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToHour(int hour)
         {
             Hour[1] = hour;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the minute.
+        /// </summary>
+        /// <param name="minute">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromMinute(int minute)
         {
             Minute[0] = minute;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the minute.
+        /// </summary>
+        /// <param name="minute">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToMinute(int minute)
         {
             Minute[1] = minute;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the second.
+        /// </summary>
+        /// <param name="second">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromSecond(int second)
         {
             Second[0] = second;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the second.
+        /// </summary>
+        /// <param name="second">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToSecond(int second)
         {
             Second[1] = second;
             return this;
         }
 
+        /// <summary>
+        /// Sets the lower bound on the millisecond.
+        /// </summary>
+        /// <param name="millisecond">The lower bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification FromMillisecond(int millisecond)
         {
             Millisecond[0] = millisecond;
             return this;
         }
 
+        /// <summary>
+        /// Sets the upper bound on the millisecond.
+        /// </summary>
+        /// <param name="millisecond">The upper bound.</param>
+        /// <returns>A <see cref="DateSpecification"/>.</returns>
         public DateSpecification ToMillisecond(int millisecond)
         {
             Millisecond[1] = millisecond;
