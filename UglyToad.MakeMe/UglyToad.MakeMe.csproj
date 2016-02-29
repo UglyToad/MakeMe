@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\PhoneNumber.cs" />
     <Compile Include="Internal\AccentedCharacter.cs" />
     <Compile Include="CaseStyle.cs" />
     <Compile Include="Internal\CharacterStatistics.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Internal\MarsagliaPolar.cs" />
     <Compile Include="Internal\Percentage.cs" />
     <Compile Include="Internal\Punctuation.cs" />
+    <Compile Include="Specification\PhoneNumber\PhoneNumberSpecification.cs" />
     <Compile Include="Specification\Date\DateSpecification.cs" />
     <Compile Include="Specification\DefaultString.cs" />
     <Compile Include="Specification\Integer\IntegerSpecification.cs" />

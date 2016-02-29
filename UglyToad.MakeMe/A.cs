@@ -4,6 +4,7 @@
     using Specification.Date;
     using Specification.Integer;
     using Specification.Name;
+    using Specification.PhoneNumber;
     using Specification.PostalCode;
     using Specification.Text;
 
@@ -55,6 +56,15 @@
         public static TextSpecification Text()
         {
             return new TextSpecification();
+        }
+
+        /// <summary>
+        /// Create a specification for a <see cref="Data.PhoneNumber"/>/.
+        /// </summary>
+        /// <returns>A default <see cref="PhoneNumberSpecification"/>.</returns>
+        public static PhoneNumberSpecification PhoneNumber()
+        {
+            return new PhoneNumberSpecification();
         }
     }
 }
