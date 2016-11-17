@@ -8,7 +8,7 @@
         [Fact]
         public void GeneratesNormalDistribution()
         {
-            var values = TestDataFactory.Make(A.Integer().WithMaximum(10).UseNormalDistribution(true))
+            var values = MakeFactory.Make(A.Integer().WithMaximum(10).UseNormalDistribution(true))
                 .GenerateSeries(10000);
             
             Assert.Equal(values.Distinct().OrderBy(v => v), Enumerable.Range(0, 11));
@@ -17,7 +17,7 @@
         [Fact]
         public void GeneratesDifferentNormalDistribution()
         {
-            var values = TestDataFactory.Make(A.Integer().WithMinimum(-10).WithMaximum(10).UseNormalDistribution(true))
+            var values = MakeFactory.Make(A.Integer().WithMinimum(-10).WithMaximum(10).UseNormalDistribution(true))
                 .GenerateSeries(10000);
             
             Assert.Equal(values.Distinct().OrderBy(v => v), Enumerable.Range(-10, 21));

@@ -12,7 +12,7 @@
     /// <summary>
     /// Factory for creating all types of test data.
     /// </summary>
-    public class TestDataFactory
+    public class MakeFactory
     {
         /// <summary>
         /// Takes in a specification of the type of data to generate and returns a factory for that data type.
@@ -56,7 +56,7 @@
                 return new TextMaker((TextSpecification) config, random);
             }
 
-            throw new NotImplementedException($"No maker exists for the return type: {type}");
+            throw new NotSupportedException($"No maker exists for the return type: {type}");
         }
     }
 }

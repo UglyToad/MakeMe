@@ -14,13 +14,13 @@
         public void GenerateText(int length)
         {
             Assert.Equal(length,
-            TestDataFactory.Make(A.Text().WithLengthRange(length, length), 50).Generate().Length);
+            MakeFactory.Make(A.Text().WithLengthRange(length, length), 50).Generate().Length);
         }
 
         [Fact]
         public void GenerateSeriesGeneratesCorrectLengthData()
         {
-            var results = TestDataFactory.Make(A.Text().WithLengthRange(10, 30), 30).GenerateSeries(100).ToList();
+            var results = MakeFactory.Make(A.Text().WithLengthRange(10, 30), 30).GenerateSeries(100).ToList();
 
             Assert.True(results.All(s => s.Length >= 10 && s.Length <= 30));
             Assert.True(results.All(r => char.IsUpper(r[0])));

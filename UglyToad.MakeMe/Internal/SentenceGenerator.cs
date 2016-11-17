@@ -43,14 +43,11 @@
                     }
                 }
 
+                words.Add(WordGenerator.Generate(wordLength, localCase, random));
+
                 if (words.Count == 0 && localCase == CaseStyle.Pascal)
                 {
-                    words.Add(WordGenerator.Generate(wordLength, localCase, random));
                     localCase = CaseStyle.Lower;
-                }
-                else
-                {
-                    words.Add(WordGenerator.Generate(wordLength, localCase, random));
                 }
 
                 wordsWithSpacingLength = words.Sum(w => w.Length) + words.Count - 1;

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>UglyToad.MakeMe</id>
+    <version>$version$</version>
+    <title>UglyToad.MakeMe</title>
+    <authors>UglyToad</authors>
+    <owners>UglyToad</owners>
+    <licenseUrl>https://github.com/UglyToad/MakeMe/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/UglyToad/MakeMe</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/UglyToad/DataTable/master/uglytoadsmall.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Generate Test Data</description>
+    <tags>Tests UnitTesting TestData Data</tags>
+    <files>
+        <file src="UglyToad.MakeMe\bin\Release\UglyToad.MakeMe.dll" target="lib\net45"/>
+        <file src="UglyToad.MakeMe\bin\Release\UglyToad.MakeMe.xml" target="lib\net45"/>
+    </files>
+  </metadata>
+</package>
